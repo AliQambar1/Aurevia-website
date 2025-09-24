@@ -13,8 +13,10 @@ const MongoStore = require("connect-mongo");
 const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
 
+
 // Controllers
 const authController = require('./controllers/auth.js');
+const listingsController = require('./controllers/listings.js');
 
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : '3000';
@@ -51,12 +53,10 @@ app.get('/', (req, res) => {
 });
 
 app.use('/auth', authController);
+app.use('/listings', listingsController);
 
 // PROTECTED
 
-app.get("/vip-lounge", isSignedIn, (req, res) => {
-    res.send(`Welcome to the party ${req.session.user.username}.`);
-});
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
