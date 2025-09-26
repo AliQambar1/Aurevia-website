@@ -57,8 +57,10 @@ app.get('/', (req, res) => {
 app.use('/auth', authController);
 app.use('/listings', listingsController);
 
-// PROTECTED
 
+app.use(isAdmin);
+
+// PROTECTED
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
