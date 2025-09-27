@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a New Car</title>
+</head>
+<body>
+<%- include('../partials/_navbar.ejs') %>
+<h1> Add a New Car</h1>
+<form action="/listings" method="post">
+    <lable for="make">Make:</lable>
+    <input type="text" name="make" id="make"/>
+
+    <lable for="modelyear">Model Year:</lable>
+    <input type="number" name="modelyear" id="modelyear"/>
+
+    <lable for="spec">Specifications:</lable>
+    <select id="spec" name="spec">
+        <option value="GCC">GCC</option>
+        <option value="EU">EU</option>
+        <option value="US">US</option>
+    </select>
+
+    <lable for="price">Price:</lable>
+    <input type="number" name="price" id="price"/>
+
+    <lable for="status">Status:</lable>
+    <select id="status" name="status">
+        <option value="Available">Available</option>
+        <option value="Sold">sold</option>
+    </select>
+
+    <lable for="notes">Notes:</lable>
+    <textarea  name="notes" id="notes"></textarea>
+
+    <button type="submit">Add New Car</button>
+</form>
+</body>
+</html>

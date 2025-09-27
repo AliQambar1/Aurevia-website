@@ -20,8 +20,21 @@ const createAdmin = async () => {
       role: "admin",
     });
 
-  await admin.save();
+ if (!existingAdmin) {
+  const hashedPassword = await bcrypt.hash(ADMIN_PASSWORD, 10);
+  const admin = new User({
+    username: ADMIN_USERNAME,
+    password: hashedPassword,
+    role: "admin",
+  });
   
+  await admin.save();
+
+  console.log("Admin created successfully");
+} else {
+  console.log("Admin already exists");
+}
+
   } catch (error) {
     console.error(error);
   }

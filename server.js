@@ -58,8 +58,6 @@ app.use('/auth', authController);
 app.use('/listings', listingsController);
 
 
-app.use(isAdmin);
-
 // PROTECTED
 
 app.listen(port, () => {

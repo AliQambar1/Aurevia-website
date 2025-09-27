@@ -1,17 +1,39 @@
 const express = require('express');
 const router = express.Router();
-const Listing = require('../models/listing')
+const Listing = require('../models/listing');
+const isAdmin = require('../middleware/is-admin');
 
-//Getrout for listing
+//Get rout for listing
 router.get('/', async (req, res) =>{
     try{
         const listings = await Listing.find({});
         console.log(listings);
-        res.render("Aurevia/index.ejs", {listings: listings});
+        res.render("listings/index.ejs", {listings: listings});
     }catch(error){
         console.error(error)
         res.redirect("/");
     }
 });
+
+router.get('/new', isAdmin ,async(req, res)=>{
+try{
+    res.render("listings/new.ejs")
+}catch(error){
+    console.error(error);
+    res.redirect('/listings')
+}
+});
+
+router.post('/', isAdmin, async (req, res) => {
+try {
+    await Listing.create(req.body);
+    console.log(req.body);
+    res.redirect('/listings');
+ }catch(error) {
+    console.error(error);
+    res.redirect('/listings/new');
+    }
+});
+
 
 module.exports = router;
