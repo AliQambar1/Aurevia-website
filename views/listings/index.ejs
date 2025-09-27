@@ -12,5 +12,17 @@
 <h1> Add a New Car</h1>
 <a href="/listings/new"> Add a New Car</a>
 <% } %>
+
+<% listings.forEach((listing) => { %>
+  <div>Make: <%= listing.make %></div>
+  <div>Model Year: <%= listing.modelyear %></div>
+  <div>Specifications: <%= listing.spec %></div>
+  <div>Price: <%= listing.price %></div>
+  <div>Status: <%= listing.status %></div>
+  <div>Notes: <%= listing.notes %></div>
+  <hr>
+<% }) %>
+
+
 </body>
 </html>
