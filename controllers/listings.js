@@ -35,5 +35,16 @@ try {
     }
 });
 
+router.get('/:listingId', async (req, res) => {
+    try {
+        const { listingId } = req.params;
+        const listing = await Listing.findById(listingId); 
+        res.render('listings/show.ejs', { listing });
+    } catch (error) {
+        console.log(error);
+        res.redirect('/');
+    }
+});
+
 
 module.exports = router;

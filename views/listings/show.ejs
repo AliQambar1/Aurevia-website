@@ -3,25 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Collection</title>
+    <title><%= listing.make %></title>
+
 </head>
 <body>
 <%- include('../partials/_navbar.ejs') %>
-<h1> Car Collection</h1>
-<% if(user && user.role === 'admin') { %>
-<h1> Add a New Car</h1>
-<a href="/listings/new"> Add a New Car</a>
-<% } %>
 
-<% listings.forEach((listing) => { %>
-  <div>Make: <%= listing.make %></div>
+<h1><%= listing.make %></h1>
+
+
+<div>Make: <%= listing.make %></div>
   <div>Model Year: <%= listing.modelyear %></div>
+  <div>Specifications: <%= listing.spec %></div>
   <div>Price: <%= listing.price %></div>
   <div>Status: <%= listing.status %></div>
-  <a href="/listings/<%= listing._id %>"> View more details</a>
-  <hr>
-<% }) %>
-
+  <div>Notes: <%= listing.notes %></div>
 
 </body>
 </html>
