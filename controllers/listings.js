@@ -3,6 +3,18 @@ const router = express.Router();
 const Listing = require('../models/listing');
 const User = require('../models/user')
 const isAdmin = require('../middleware/is-admin');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); 
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, file.fieldname + '-' + uniqueSuffix + '-' + file.originalname);
+  }
+});
+const upload = multer({ storage: storage });
 
 //Get rout for listing
 router.get('/', async (req, res) =>{
@@ -16,19 +28,25 @@ router.get('/', async (req, res) =>{
     }
 });
 
+// New Form
 router.get('/new', isAdmin ,async(req, res)=>{
 try{
     res.render("listings/new.ejs")
 }catch(error){
-    console.error(error);
+    console.error(error);  
     res.redirect('/listings')
 }
 });
 
-router.post('/', isAdmin, async (req, res) => {
+// Creat lsiting & adding image
+router.post('/', isAdmin, upload.array('images', 10), async (req, res) => {
 try {
-    await Listing.create(req.body);
-    console.log(req.body);
+    const imagePaths = req.file.map(file => file.filename);
+    const newListing = new Listing({
+      ...req.body,
+      images: imagePaths
+    });
+    await newListing.save();
     res.redirect('/listings');
  }catch(error) {
     console.error(error);
@@ -36,6 +54,7 @@ try {
     }
 });
 
+// Show one listing
 router.get('/:listingId', async (req, res) => {
     try {
         const { listingId } = req.params;
@@ -47,6 +66,7 @@ router.get('/:listingId', async (req, res) => {
     }
 });
 
+// Delet listing
 router.delete("/:listingId", isAdmin ,async (req, res) => {
   try {
      const listing = await Listing.findByIdAndDelete(req.params.listingId);
@@ -57,6 +77,7 @@ router.delete("/:listingId", isAdmin ,async (req, res) => {
   }
 });
 
+// Edit form
 router.get('/:listingId/edit', isAdmin, async (req, res) => {
     try {
     const currentListing = await Listing.findById(req.params.listingId);
@@ -67,15 +88,43 @@ router.get('/:listingId/edit', isAdmin, async (req, res) => {
   }
 });
 
-router.put('/:listingId', isAdmin, async (req, res) => {
-  try {
-    await Listing.findByIdAndUpdate(req.params.listingId, req.body, { new: true });
+// Update Listing and images
+router.put('/:listingId', isAdmin, upload.array('images', 10), async (req, res) => {
+   try {
+    const listing = await Listing.findById(req.params.listingId);
+
+    if (req.files.length > 0) {
+      const newImages = req.files.map(file => file.filename);
+      listing.images.push(...newImages);
+    }
+    listing.make = req.body.make;
+    listing.modelyear = req.body.modelyear;
+    listing.spec = req.body.spec;
+    listing.price = req.body.price;
+    listing.status = req.body.status;
+    listing.notes = req.body.notes;
+    await listing.save();
     res.redirect(`/listings/${req.params.listingId}`);
   } catch (error) {
     console.log(error);
     res.redirect("/");
   }
 });
+
+// Delete image
+router.delete('/:listingId/images/:imageName', isAdmin, async (req, res) => {
+  try {
+    const { listingId, imageName } = req.params;
+    const listing = await Listing.findById(listingId);
+    listing.images = listing.images.filter(img => img !== imageName);
+    await listing.save();
+    res.redirect(`/listings/${listingId}/edit`);
+  } catch (error) {
+    console.log(error);
+    res.redirect('/');
+  }
+});
+
 
 
 module.exports = router;

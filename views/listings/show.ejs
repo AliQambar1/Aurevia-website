@@ -19,10 +19,20 @@
   <div>Status: <%= listing.status %></div>
   <div>Notes: <%= listing.notes %></div>
 
+  <h2>Car Images</h2>
+<% if(listing.images.length > 0) { %>
+  <% listing.images.forEach(img => { %>
+    <img src="/uploads/<%= img %>" alt="Car Image" width="300"/>
+  <% }) %>
+<% } else { %>
+  <p>No images available</p>
+<% } %>
+
   <% if(user && user.role === 'admin') { %>
 <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
 <button type="submit">Delete <%=listing.make %> </button>
 <a href="/listings/<%= listing._id %>/edit"> Edit <%=listing.make %></a>
+<a href="/listings">Bake to the list</a>
 </form>
 <% } %>
   

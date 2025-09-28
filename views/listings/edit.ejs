@@ -9,7 +9,7 @@
     <%- include('../partials/_navbar.ejs') %>
     <h1>Edit <%= listing.name %></h1>
 
-    <form action="/listings/<%= listing._id %>?_method=PUT" method="POST">
+    <form action="/listings/<%= listing._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
       <label for="make">Make:</label>
       <input type="text" name="make" id="make" value="<%= listing.make %>"/>
 
@@ -35,7 +35,21 @@
       <label for="notes">Notes:</label>
       <textarea name="notes" id="notes"><%= listing.notes %></textarea>
 
+      <label for="images">Add More Images:</label>
+    <input type="file" name="images" id="images" multiple />
+
       <button type="submit">Save Changes</button>
     </form>
+
+    <h2>Current Images</h2>
+  <% listing.images.forEach(img => { %>
+    <div>
+      <img src="/uploads/<%= img %>" alt="Car Image" width="200"/>
+      <form action="/listings/<%= listing._id %>/images/<%= img %>?_method=DELETE" method="POST" enctype="multipart/form-data" >
+        <button type="submit">Delete</button>
+      </form>
+    </div>
+  <% }) %>
+
   </body>
 </html>

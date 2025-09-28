@@ -17,8 +17,16 @@
   <div>Model Year: <%= listing.modelyear %></div>
   <div>Price: <%= listing.price %></div>
   <div>Status: <%= listing.status %></div>
+  <% if (listing.images && listing.images.length > 0) { %>
+  <div>
+  <h3>Car Images:</h3>
+    <% listing.images.forEach((imageName) => { %>
+   <img src="/uploads/<%= imageName %>" alt="<%= listing.make %> Image" class="listing-image">
+  <% }) %>
+</div>
+<% } %>
+
   <a href="/listings/<%= listing._id %>"> View more details</a>
-  <hr>
 <% }) %>
 
 

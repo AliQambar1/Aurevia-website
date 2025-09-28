@@ -15,6 +15,7 @@ const isAdmin = require("./middleware/is-admin");
 const passUserToView = require("./middleware/pass-user-to-view.js");
 
 
+
 // Controllers
 const authController = require('./controllers/auth.js');
 const listingsController = require('./controllers/listings.js');
@@ -50,12 +51,15 @@ app.use(
 app.use(passUserToView);
 
 // PUBLIC
+app.use('/uploads', express.static('uploads')); 
 app.get('/', (req, res) => {
   res.render('index.ejs');
 });
 
 app.use('/auth', authController);
 app.use('/listings', listingsController);
+
+
 
 
 // PROTECTED
