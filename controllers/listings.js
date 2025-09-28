@@ -47,9 +47,9 @@ router.get('/:listingId', async (req, res) => {
     }
 });
 
-router.delete("/:listingId", async (req, res) => {
+router.delete("/:listingId", isAdmin ,async (req, res) => {
   try {
-     await Listing.findByIdAndDelete(req.params.listingId);
+     const listing = await Listing.findByIdAndDelete(req.params.listingId);
       res.redirect("/listings");
   } catch (error) {
     console.log(error);
@@ -57,17 +57,24 @@ router.delete("/:listingId", async (req, res) => {
   }
 });
 
-router.get('/:listingId/edit', isAdmin, async (req, res) =>{
-    try{
-        const currentListing = await Listing.findByIdAndUpdate(req.params.listingId);
-        res.render('listings/edit.js', {
-           listing: currentListing, 
-        });
-        
-    } catch(error){
-        console.log(error)
-        res.redirect('/')
-    }
+router.get('/:listingId/edit', isAdmin, async (req, res) => {
+    try {
+    const currentListing = await Listing.findById(req.params.listingId);
+    res.render("listings/edit.ejs", { listing: currentListing });
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
+});
+
+router.put('/:listingId', isAdmin, async (req, res) => {
+  try {
+    await Listing.findByIdAndUpdate(req.params.listingId, req.body, { new: true });
+    res.redirect(`/listings/${req.params.listingId}`);
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
 });
 
 

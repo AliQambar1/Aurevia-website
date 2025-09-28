@@ -22,7 +22,7 @@
   <% if(user && user.role === 'admin') { %>
 <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
 <button type="submit">Delete <%=listing.make %> </button>
-<a href="/listings/<%= listing._id %>"> Edit <%=listing.make %></a>
+<a href="/listings/<%= listing._id %>/edit"> Edit <%=listing.make %></a>
 </form>
 <% } %>
   

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit <%= listing.name %></title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Edit <%= listing.name %></h1>
+
+    <form action="/listings/<%= listing._id %>?_method=PUT" method="POST">
+      <label for="make">Make:</label>
+      <input type="text" name="make" id="make" value="<%= listing.make %>"/>
+
+      <label for="modelyear">Model Year:</label>
+      <input type="number" name="modelyear" id="modelyear" value="<%= listing.modelyear %>"/>
+
+      <label for="spec">Specifications:</label>
+      <select id="spec" name="spec">
+          <option value="GCC" <%= listing.spec === 'GCC' ? 'selected' : "" %>>GCC</option>
+          <option value="EU" <%= listing.spec === 'EU' ? 'selected' : "" %>>EU</option>
+          <option value="US" <%= listing.spec === 'US' ? 'selected' : "" %>>US</option>
+      </select>
+
+      <label for="price">Price:</label>
+      <input type="number" name="price" id="price" value="<%= listing.price %>"/>
+
+      <label for="status">Status:</label>
+      <select id="status" name="status">
+           <option value="Available" <%= listing.status === 'Available' ? 'selected' : "" %>>Available</option>
+           <option value="Sold" <%= listing.status === 'Sold' ? 'selected' : "" %>>Sold</option>
+      </select>
+
+      <label for="notes">Notes:</label>
+      <textarea name="notes" id="notes"><%= listing.notes %></textarea>
+
+      <button type="submit">Save Changes</button>
+    </form>
+  </body>
+</html>

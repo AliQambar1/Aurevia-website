@@ -23,6 +23,12 @@ const listingSchema = new mongoose.Schema({
         required: true,
         enum: ['Available', 'Sold'],
     },
+
+    owner:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    },
+
     notes: {
     type: String,
   },
