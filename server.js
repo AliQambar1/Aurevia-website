@@ -19,6 +19,7 @@ const passUserToView = require("./middleware/pass-user-to-view.js");
 // Controllers
 const authController = require('./controllers/auth.js');
 const listingsController = require('./controllers/listings.js');
+const inquiriesController = require('./controllers/inquiries.js');
 
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : '3000';
@@ -51,6 +52,7 @@ app.use(
 app.use(passUserToView);
 
 // PUBLIC
+app.use(express.static('public'));
 app.use('/uploads', express.static('uploads')); 
 app.get('/', (req, res) => {
   res.render('index.ejs');
@@ -58,7 +60,7 @@ app.get('/', (req, res) => {
 
 app.use('/auth', authController);
 app.use('/listings', listingsController);
-
+app.use('/inquiries', inquiriesController);
 
 
 
