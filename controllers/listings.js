@@ -19,7 +19,11 @@ const upload = multer({ storage: storage });
 //Get rout for listing
 router.get('/', async (req, res) =>{
     try{
-        const listings = await Listing.find({});
+      let filter = {};
+      if (req.query.status){
+        filter.status = req.query.status;
+      }
+        const listings = await Listing.find(filter);
         console.log(listings);
         res.render("listings/index.ejs", {listings: listings});
     }catch(error){

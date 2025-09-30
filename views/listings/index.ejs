@@ -8,6 +8,13 @@
 <body>
 <%- include('../partials/_navbar.ejs') %>
 <h1> Car Collection</h1>
+
+<div>
+  <a href="/listings"><button>All</button></a>
+  <a href="/listings?status=Available"><button>Available</button></a>
+  <a href="/listings?status=Sold"><button>Sold</button></a>
+</div>
+
 <% if(user && user.role === 'admin') { %>
 <a href="/listings/new"> Add a New Car</a>
 <% } %>
