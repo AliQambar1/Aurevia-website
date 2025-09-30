@@ -41,7 +41,7 @@ try{
 // Creat lsiting & adding image
 router.post('/', isAdmin, upload.array('images', 10), async (req, res) => {
 try {
-    const imagePaths = req.file.map(file => file.filename);
+    const imagePaths = req.files.map(file => file.filename);
     const newListing = new Listing({
       ...req.body,
       images: imagePaths
@@ -53,6 +53,7 @@ try {
     res.redirect('/listings/new');
     }
 });
+
 
 // Show one listing
 router.get('/:listingId', async (req, res) => {

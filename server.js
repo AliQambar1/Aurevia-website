@@ -52,7 +52,6 @@ app.use(
 app.use(passUserToView);
 
 // PUBLIC
-app.use(express.static('public'));
 app.use('/uploads', express.static('uploads')); 
 app.get('/', (req, res) => {
   res.render('index.ejs');

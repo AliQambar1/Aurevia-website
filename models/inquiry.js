@@ -9,7 +9,7 @@ const inquirySchema = new mongoose.Schema({
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: user,
+        ref: 'User',
         required: false,
     },
     name:{
@@ -24,6 +24,10 @@ const inquirySchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    message:{
+        type: String,
+        required: false,
+    },
     createdAt: {
         type: Date,
         default: Date.now
@@ -31,4 +35,4 @@ const inquirySchema = new mongoose.Schema({
 });
 
 const Inquiry = mongoose.model('Inquiry', inquirySchema);
-MediaSourceHandle.exports = Inquiry;
+module.exports = Inquiry;

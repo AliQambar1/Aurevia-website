@@ -7,7 +7,7 @@
 </head>
 <body>
 <%- include('../partials/_navbar.ejs') %>
-<form action="/listings" method="post">
+<form action="/listings" method="post" enctype="multipart/form-data">
     <lable for="make">Make:</lable>
     <input type="text" name="make" id="make"/>
 
