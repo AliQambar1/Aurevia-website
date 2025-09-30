@@ -14,6 +14,14 @@ const listingSchema = new mongoose.Schema({
     required: true,
     enum: ['GCC', 'EU', 'US'],
   },
+  exterior: {
+    type: String,
+    required: true,
+  },
+  interior: {
+    type: String,
+    required: true,
+  },
   price: {
     type: Number,
     required: true,

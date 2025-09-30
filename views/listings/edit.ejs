@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit <%= listing.name %></title>
+    <title>Edit <%= listing.make %></title>
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Edit <%= listing.name %></h1>
+  <h1>Edit <%= listing.make %></h1>
 
     <form action="/listings/<%= listing._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
       <label for="make">Make:</label>
@@ -22,6 +22,12 @@
           <option value="EU" <%= listing.spec === 'EU' ? 'selected' : "" %>>EU</option>
           <option value="US" <%= listing.spec === 'US' ? 'selected' : "" %>>US</option>
       </select>
+
+      <label for="exterior">Exterior Color:</label>
+      <input type="text" name="exterior" id="exterior" value="<%= listing.exterior %>"/>
+
+      <label for="interior">Interior Color:</label>
+      <input type="text" name="interior" id="interior" value="<%= listing.interior %>"/>
 
       <label for="price">Price:</label>
       <input type="number" name="price" id="price" value="<%= listing.price %>"/>
@@ -41,7 +47,7 @@
       <button type="submit">Save Changes</button>
     </form>
 
-    <h2>Current Images</h2>
+    <h2>Current Images:</h2>
   <% listing.images.forEach(img => { %>
     <div>
       <img src="/uploads/<%= img %>" alt="Car Image" width="200"/>

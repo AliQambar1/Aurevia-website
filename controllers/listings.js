@@ -101,6 +101,8 @@ router.put('/:listingId', isAdmin, upload.array('images', 10), async (req, res) 
     listing.make = req.body.make;
     listing.modelyear = req.body.modelyear;
     listing.spec = req.body.spec;
+    listing.exterior = req.body.exterior
+    listing.exterior = req.body.exterior
     listing.price = req.body.price;
     listing.status = req.body.status;
     listing.notes = req.body.notes;

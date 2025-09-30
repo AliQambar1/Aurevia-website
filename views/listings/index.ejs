@@ -13,10 +13,7 @@
 <% } %>
 
 <% listings.forEach((listing) => { %>
-  <div>Make: <%= listing.make %></div>
-  <div>Model Year: <%= listing.modelyear %></div>
-  <div>Price: <%= listing.price %></div>
-  <div>Status: <%= listing.status %></div>
+  <div>Make: <%= listing.make %> - <%= listing.modelyear %> </div>
   <% if (listing.images && listing.images.length > 0) { %>
   <div>
   <h3>Car Images:</h3>
