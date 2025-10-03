@@ -3,59 +3,87 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>Edit <%= listing.make %></title>
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
-  <h1>Edit <%= listing.make %></h1>
 
-    <form action="/listings/<%= listing._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
-      <label for="make">Make:</label>
-      <input type="text" name="make" id="make" value="<%= listing.make %>"/>
+    <div class="form-wrapper">
+      <h2 class="form-title">Edit <%= listing.make %></h2>
+      
+      <form action="/listings/<%= listing._id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="car-form">
 
-      <label for="modelyear">Model Year:</label>
-      <input type="number" name="modelyear" id="modelyear" value="<%= listing.modelyear %>"/>
+        <div class="form-group">
+          <label for="make">Make</label>
+          <input type="text" name="make" id="make" value="<%= listing.make %>" required/>
+        </div>
 
-      <label for="spec">Specifications:</label>
-      <select id="spec" name="spec">
-          <option value="GCC" <%= listing.spec === 'GCC' ? 'selected' : "" %>>GCC</option>
-          <option value="EU" <%= listing.spec === 'EU' ? 'selected' : "" %>>EU</option>
-          <option value="US" <%= listing.spec === 'US' ? 'selected' : "" %>>US</option>
-      </select>
+        <div class="form-group">
+          <label for="modelyear">Model Year</label>
+          <input type="number" name="modelyear" id="modelyear" value="<%= listing.modelyear %>" required/>
+        </div>
 
-      <label for="exterior">Exterior Color:</label>
-      <input type="text" name="exterior" id="exterior" value="<%= listing.exterior %>"/>
+        <div class="form-group">
+          <label for="spec">Specifications</label>
+          <select id="spec" name="spec" required>
+            <option value="GCC" <%= listing.spec === 'GCC' ? 'selected' : "" %>>GCC</option>
+            <option value="EU" <%= listing.spec === 'EU' ? 'selected' : "" %>>EU</option>
+            <option value="US" <%= listing.spec === 'US' ? 'selected' : "" %>>US</option>
+          </select>
+        </div>
 
-      <label for="interior">Interior Color:</label>
-      <input type="text" name="interior" id="interior" value="<%= listing.interior %>"/>
+        <div class="form-group">
+          <label for="exterior">Exterior Color</label>
+          <input type="text" name="exterior" id="exterior" value="<%= listing.exterior %>"/>
+        </div>
 
-      <label for="price">Price:</label>
-      <input type="number" name="price" id="price" value="<%= listing.price %>"/>
+        <div class="form-group">
+          <label for="interior">Interior Color</label>
+          <input type="text" name="interior" id="interior" value="<%= listing.interior %>"/>
+        </div>
 
-      <label for="status">Status:</label>
-      <select id="status" name="status">
-           <option value="Available" <%= listing.status === 'Available' ? 'selected' : "" %>>Available</option>
-           <option value="Sold" <%= listing.status === 'Sold' ? 'selected' : "" %>>Sold</option>
-      </select>
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input type="number" name="price" id="price" value="<%= listing.price %>" required/>
+        </div>
 
-      <label for="notes">Notes:</label>
-      <textarea name="notes" id="notes"><%= listing.notes %></textarea>
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select id="status" name="status">
+            <option value="Available" <%= listing.status === 'Available' ? 'selected' : "" %>>Available</option>
+            <option value="Sold" <%= listing.status === 'Sold' ? 'selected' : "" %>>Sold</option>
+          </select>
+        </div>
 
-      <label for="images">Add More Images:</label>
-    <input type="file" name="images" id="images" multiple />
+        <div class="form-group full-width">
+          <label for="notes">Notes</label>
+          <textarea name="notes" id="notes" rows="4"><%= listing.notes %></textarea>
+        </div>
 
-      <button type="submit">Save Changes</button>
-    </form>
+        <div class="form-group full-width">
+          <label for="images">Add More Images</label>
+          <input type="file" name="images" id="images" multiple />
+        </div>
 
-    <h2>Current Images:</h2>
-  <% listing.images.forEach(img => { %>
-    <div>
-      <img src="/uploads/<%= img %>" alt="Car Image" width="200"/>
-      <form action="/listings/<%= listing._id %>/images/<%= img %>?_method=DELETE" method="POST" enctype="multipart/form-data" >
-        <button type="submit">Delete</button>
+        <div class="form-group full-width">
+          <button type="submit">Save Changes</button>
+        </div>
+
       </form>
     </div>
-  <% }) %>
+
+    <div class="form-wrapper">
+      <h2 class="form-title">Current Images</h2>
+      <% listing.images.forEach(img => { %>
+        <div class="form-group full-width">
+          <img src="/uploads/<%= img %>" alt="Car Image" width="200"/>
+          <form action="/listings/<%= listing._id %>/images/<%= img %>?_method=DELETE" method="POST">
+            <button type="submit">Delete</button>
+          </form>
+        </div>
+      <% }) %>
+    </div>
 
   </body>
 </html>

@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<nav class="navbar">
+  <div class="navbar-left">
+    <img src="/stylesheets/images/logo.png" alt="Aurevia Logo" class="logo" />
+  </div>
 
-    <nav>
-        <% if(user) { %>
-            <a href="/auth/sign-out">Sign Out</a>
-       <% } else { %>
-             <a href="/auth/sign-up">Sign Up</a>
-            <a href="/auth/sign-in">Sign In</a>
-       <% } %>
-    </nav>
-    
-</body>
-</html>
+  <div class="navbar-right">
+    <% if(user) { %>
+      <a href="/listings">Collection</a>
+      <a href="/auth/sign-out">Sign Out</a>
+    <% } else { %>
+      <a href="/auth/sign-up">Sign Up</a>
+      <a href="/auth/sign-in">Sign In</a>
+    <% } %>
+  </div>
+</nav>

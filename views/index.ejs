@@ -1,23 +1,76 @@
+views\index.ejs:
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <title>Aurevia | Luxury Access</title>
 </head>
 <body>
+  <%- include('./partials/_navbar.ejs') %>
 
-<% if (user) { %>
-<h1>Welcome to the app, <%= user.username %>!</h1>
-<p>
-  <a href="/auth/sign-out">Sign out</a>
-  <a href="listings"> Ower Car Collection </a>
-</p>
-<% } else { %>
-<h1>Welcome to the app, guest.</h1>
-<p>
-  <a href="/auth/sign-up">Sign up</a> or <a href="/auth/sign-in">Sign in</a>.
-</p>
-<% } %>
+  
+  <section class="hero">
+    <video autoplay muted loop class="bg-video">
+      <source src="/video/Aurevia.mp4" type="video/mp4" />
+    </video>
+
+
+  <div class="hero-buttons">
+     <% if(user){ %>
+      <a href="/listings" class="hero-btn" >Collection</a>
+      <a href="/auth/sign-out" class="hero-btn" >Sign Out</a>
+    <% } else { %>
+      <a href="/auth/sign-up" class="hero-btn" >Sign Up</a>
+      <a href="/auth/sign-in" class="hero-btn">Sign In</a>
+    <% } %>
+
+    
+  </div>
+  </section>
+
+  <!-- About Us -->
+  <section class="about">
+    <div class="about-content">
+      <h2>About Us</h2>
+      <p>
+        At <strong>Aurevia</strong>, we specialize in connecting discerning clients with the world’s most exclusive opportunities in 
+        <em>luxury automobiles, superyachts, private aircraft, fine gold, and strategic oil assets</em>. Acting as a trusted intermediary, 
+        we provide access to exceptional acquisitions both <strong>off-market</strong> and in-market—with absolute discretion and integrity.
+      </p>
+
+      <h3>Our Services</h3>
+      <p>
+        We source and secure high-value assets for clients, whether it’s a rare collector’s car, a bespoke yacht, a private jet, or 
+        large-scale commodities. Our role is to simplify complex acquisitions while ensuring confidentiality, safety, and seamless execution.
+      </p>
+
+      <h3>Our Network</h3>
+      <p>
+        Through <strong>long-standing relationships with verified and reputable sellers</strong>, Aurevia offers opportunities that are rarely 
+        available to the public. This exclusive network allows us to deliver value, trust, and access to opportunities that go beyond the ordinary.
+      </p>
+
+      <h3>Our Promise</h3>
+      <p>
+        We pride ourselves on offering a <strong>personalized, white-glove experience</strong>. Every step of the process is handled with professionalism, 
+        precision, and global expertise. Our mission is to create lasting relationships while consistently delivering excellence.
+      </p>
+
+      <h3>Contact</h3>
+      <p>
+         Phone: <a href="tel:+9733233735">+973 32233735</a><br>
+        WhatsApp: <a href="https://wa.me/message/CKOUYDLLNEJBF1" target="_blank">Chat on WhatsApp</a>
+      </p>
+
+      <h3>Our Accounts</h3>
+      <p>
+        Instagram: <a href="https://www.instagram.com/aurevia.global/" target="_blank">@aurevia.global</a><br>
+        TikTok: <a href="https://www.tiktok.com/@aurevia.global" target="_blank">@aurevia.global</a>
+      </p>
+    </div>
+  </section>
 </body>
 </html>

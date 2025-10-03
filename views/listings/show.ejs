@@ -1,47 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= listing.make %></title>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <title><%= listing.make %></title>
 </head>
 <body>
-<%- include('../partials/_navbar.ejs') %>
+  <%- include('../partials/_navbar.ejs') %>
 
-<h1><%= listing.make %></h1>
+  <main>
+    <div class="car-detail-container">
+      <div class="car-gallery">
+        <% if (listing.images.length > 0) { %>
+          <div class="main-image-wrapper">
+            <button class="gallery-btn prev">&#10094;</button>
+            <img 
+              id="mainImage" 
+              src="/uploads/<%= listing.images[0] %>" 
+              alt="<%= listing.make %> Main Image" 
+            />
+            <button class="gallery-btn next">&#10095;</button>
+          </div>
 
+          <div class="thumbnail-row">
+            <% listing.images.forEach((img, idx) => { %>
+              <img 
+                class="thumbnail <%= idx === 0 ? 'active' : '' %>" 
+                src="/uploads/<%= img %>" 
+                data-index="<%= idx %>" 
+                alt="Thumbnail <%= idx+1 %>" 
+              />
+            <% }) %>
+          </div>
+        <% } else { %>
+          <div class="main-image-wrapper">
+            <img src="/images/placeholder.png" alt="No Image Available" />
+          </div>
+        <% } %>
+      </div>
 
-<div>Make: <%= listing.make %></div>
-  <div>Model Year: <%= listing.modelyear %></div>
-  <div>Specifications: <%= listing.spec %></div>
-  <div>Exterior Color: <%= listing.exterior %></div>
-  <div>Interior Color: <%= listing.interior %></div>
-  <div>Price: <%= listing.price %></div>
-  <div>Status: <%= listing.status %></div>
-  <div>Notes: <%= listing.notes %></div>
+      <div class="car-details">
+        <h2><%= listing.make %></h2>
+        <div class="detail-item"><span>Model Year:</span> <%= listing.modelyear %></div>
+        <div class="detail-item"><span>Specifications:</span> <%= listing.spec %></div>
+        <div class="detail-item"><span>Exterior Color:</span> <%= listing.exterior %></div>
+        <div class="detail-item"><span>Interior Color:</span> <%= listing.interior %></div>
+        <div class="detail-item"><span>Price:</span> $<%= new Intl.NumberFormat().format(listing.price) %></div>
+        <div class="detail-item"><span>Status:</span> <%= listing.status %></div>
 
-  <h2>Car Images</h2>
-<% if(listing.images.length > 0) { %>
-  <% listing.images.forEach(img => { %>
-    <img src="/uploads/<%= img %>" alt="Car Image" width="300"/>
-  <% }) %>
-<% } else { %>
-  <p>No images available</p>
-<% } %>
+        <% if (user && user.role === 'user') { %>
+          <a href="/inquiries/new?listingId=<%= listing._id %>" class="inquire-btn">Inquire</a>
+        <% } %>
 
-  <% if(user && user.role === 'admin') { %>
-<form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
-<button type="submit">Delete <%=listing.make %> </button>
-<a href="/listings/<%= listing._id %>/edit"> Edit <%=listing.make %></a>
-<a href="/listings">Bake to the list</a>
-</form>
-<% } %>
+        <% if (user && user.role === 'admin') { %>
+          <div class="admin-actions">
+            <a href="/listings/<%= listing._id %>/edit" class="btn btn-edit">Edit</a>
+            <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST" style="flex: 1;" >
+              <button type="submit" class="btn btn-delete">Delete</button> 
+            </form> 
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </main>
 
-<a href="/inquiries/new?listingId=<%= listing._id %>">
-  <button type="submit">INQUIR</button>
-</a>
+  <% if (listing.notes && listing.notes.trim() !== "") { %>
+    <section class="notes-section">
+      <h3>Additional Notes</h3>
+      <p><%= listing.notes %></p>
+    </section>
+  <% } %>
 
+  <script src="/javascripts/carGallery.js"></script>
+
+    <hr style="height: 3px;" color="black">
+<div class="Accounts-navebar-bottom">
+  <a href="https://www.instagram.com/aurevia.global/" target="_blank">
+    <img src="/stylesheets/images/image-removebg-preview (7).png" alt="instagram">
+  </a>
+  <a href="https://www.tiktok.com/@aurevia.global" target="_blank">
+    <img src="/stylesheets/images/Tiktokicon.png" alt="tiktok">
+  </a>
+  <a href="https://wa.me/message/CKOUYDLLNEJBF1" target="_blank">
+    <img src="/stylesheets/images/whatsapp-256-black.png" alt="WhatsApp">
+  </a>
+</div>
 
 </body>
 </html>

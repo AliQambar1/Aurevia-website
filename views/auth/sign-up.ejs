@@ -3,21 +3,72 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>Sign Up</title>
   </head>
-  <body>
-    <h1>Create a new account!</h1>
-    <form action="/auth/sign-up" method="POST">
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" />
+  <body id="signup-page">
+    <%- include('../partials/_navbar.ejs') %>
 
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" />
+   
+    <div class="sign-in-up-wrapper">
+    <div class="form-container">
+    <h1 id="signup-title">Create a new account</h1>
+    <form action="/auth/sign-up" method="POST" class="signup-form" id="signup-form">
+      <label for="username" class="form-label">Username:</label>
+      <input type="text" name="username" id="username" class="form-input" placeholder="Full Name" />
 
-      <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" name="confirmPassword" id="confirmPassword" />
+      <label for="password" class="form-label">Password:</label>
+      <input type="password" name="password" id="password" class="form-input" placeholder="Password"/>
 
-      <button type="submit">Sign up</button>
+      <label for="confirmPassword" class="form-label">Confirm Password:</label>
+      <input type="password" name="confirmPassword" id="confirmPassword" class="form-input" placeholder="Confirm Password"/>
+
+      <button type="submit" class="form-button" id="create-account-btn">Create Account</button>
     </form>
+    </div>
+    </div>
+
+    <!-- About Us -->
+  <section class="about">
+    <div class="about-content">
+      <h2>About Us</h2>
+      <p>
+        At <strong>Aurevia</strong>, we specialize in connecting discerning clients with the world’s most exclusive opportunities in 
+        <em>luxury automobiles, superyachts, private aircraft, fine gold, and strategic oil assets</em>. Acting as a trusted intermediary, 
+        we provide access to exceptional acquisitions both <strong>off-market</strong> and in-market—with absolute discretion and integrity.
+      </p>
+
+      <h3>Our Services</h3>
+      <p>
+        We source and secure high-value assets for clients, whether it’s a rare collector’s car, a bespoke yacht, a private jet, or 
+        large-scale commodities. Our role is to simplify complex acquisitions while ensuring confidentiality, safety, and seamless execution.
+      </p>
+
+      <h3>Our Network</h3>
+      <p>
+        Through <strong>long-standing relationships with verified and reputable sellers</strong>, Aurevia offers opportunities that are rarely 
+        available to the public. This exclusive network allows us to deliver value, trust, and access to opportunities that go beyond the ordinary.
+      </p>
+
+      <h3>Our Promise</h3>
+      <p>
+        We pride ourselves on offering a <strong>personalized, white-glove experience</strong>. Every step of the process is handled with professionalism, 
+        precision, and global expertise. Our mission is to create lasting relationships while consistently delivering excellence.
+      </p>
+
+      <h3>Contact</h3>
+      <p>
+         Phone: <a href="tel:+9733233735">+973 32233735</a><br>
+        WhatsApp: <a href="https://wa.me/message/CKOUYDLLNEJBF1" target="_blank">Chat on WhatsApp</a>
+      </p>
+
+      <h3>Our Accounts</h3>
+      <p>
+        Instagram: <a href="https://www.instagram.com/aurevia.global/" target="_blank">@aurevia.global</a><br>
+        TikTok: <a href="https://www.tiktok.com/@aurevia.global" target="_blank">@aurevia.global</a>
+      </p>
+    </div>
+  </section>
+
   </body>
 </html>

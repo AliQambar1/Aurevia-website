@@ -23,6 +23,8 @@ const inquiriesController = require('./controllers/inquiries.js');
 
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : '3000';
+const path = require('path');
+
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -46,6 +48,16 @@ app.use(
     store: MongoStore.create({
       mongoUrl: process.env.MONGODB_URI,
     }),
+  })
+);
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
   })
 );
 

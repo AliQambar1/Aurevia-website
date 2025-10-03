@@ -1,48 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add a New Car</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <title>Add a New Car</title>
 </head>
 <body>
-<%- include('../partials/_navbar.ejs') %>
-<form action="/listings" method="post" enctype="multipart/form-data">
-    <lable for="make">Make:</lable>
-    <input type="text" name="make" id="make"/>
+  <%- include('../partials/_navbar.ejs') %>
 
-    <lable for="modelyear">Model Year:</lable>
-    <input type="number" name="modelyear" id="modelyear"/>
+  <div class="form-wrapper">
+    <h2 class="form-title">Add a New Car</h2>
+    <form action="/listings" method="POST" enctype="multipart/form-data" class="car-form">
 
-    <lable for="spec">Specifications:</lable>
-    <select id="spec" name="spec">
-        <option value="GCC">GCC</option>
-        <option value="EU">EU</option>
-        <option value="US">US</option>
-    </select>
+    
+      <div class="form-group">
+        <label for="make">Make</label>
+        <input type="text" name="make" id="make" required/>
+      </div>
 
-    <label for="exterior">Exterior Color:</label>
-    <input type="text" name="exterior" id="exterior"/>
+      <div class="form-group">
+        <label for="modelyear">Model Year</label>
+        <input type="number" name="modelyear" id="modelyear" required/>
+      </div>
 
-    <label for="interior">Interior Color:</label>
-    <input type="text" name="interior" id="interior"/>
 
-    <lable for="price">Price:</lable>
-    <input type="number" name="price" id="price"/>
+      <div class="form-group">
+        <label for="spec">Specifications</label>
+        <select id="spec" name="spec" required>
+          <option value="GCC">GCC</option>
+          <option value="EU">EU</option>
+          <option value="US">US</option>
+        </select>
+      </div>
 
-    <lable for="status">Status:</lable>
-    <select id="status" name="status">
-        <option value="Available">Available</option>
-        <option value="Sold">sold</option>
-    </select>
+      <div class="form-group">
+        <label for="exterior">Exterior Color</label>
+        <input type="text" name="exterior" id="exterior"/>
+      </div>
 
-    <lable for="notes">Notes:</lable>
-    <textarea  name="notes" id="notes"></textarea>
+      <div class="form-group">
+        <label for="interior">Interior Color</label>
+        <input type="text" name="interior" id="interior"/>
+      </div>
 
-    <label for="images"> Upload images</label>
-    <input type="file" name="images" id="images" multiple />
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" name="price" id="price" required/>
+      </div>
 
-    <button type="submit">Add New Car</button>
-</form>
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select id="status" name="status">
+          <option value="Available">Available</option>
+          <option value="Sold">Sold</option>
+        </select>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="notes">Notes</label>
+        <textarea name="notes" id="notes" rows="4"></textarea>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="images">Upload Images</label>
+        <input type="file" name="images" id="images" multiple />
+      </div>
+
+      <div class="form-group full-width">
+        <button type="submit">Add New Car</button>
+      </div>
+
+    </form>
+  </div>
 </body>
 </html>

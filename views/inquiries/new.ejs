@@ -1,28 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
+<%- include('../partials/_navbar.ejs') %>
+  <div class="form-wrapper">
+  <h2 class="form-title">Get in Touch</h2>
+    <form action="https://api.web3forms.com/submit" method="POST" class="car-form">
 
-    <dive class="contact-container">
-  <form action="https://api.web3forms.com/submit" method="POST" class="contact-left">
-    <div class="conatct-left title"></div>
-    <h2>Get in touch</h2>
-    <hr>
-  </dive>
-    <input type="hidden" name="access_key" value="d9f00388-35ce-4e86-beae-2ac9567f0eb0">
- <input type="text" name="name" placeholder="Your Name" class="contact-inputs">
-  <input type="text" name="phone" placeholder="Your Phone Number" class="contact-inputs">
-  <input type="email" name="email" placeholder="Your Email" class="contact-inputs">
-  <textarea name="message" placeholder="Your message" class="contact-inputs"></textarea>
-  <button type="submit">Submit</button>
-  </form>
-  <div class="contact-right">
-    <img src="" alt="">
+      <input type="hidden" name="access_key" value="d9f00388-35ce-4e86-beae-2ac9567f0eb0">
+
+      <div class="form-group">
+      <label for="name">Your Name</label>
+      <input type="text" name="name" id="name" class="contact-inputs" placeholder="Enter your name" required>
+      </div>
+
+      <div class="form-group">
+      <label for="phone">Your Phone Number</label>
+      <input type="text" name="phone" id="phone" class="contact-inputs" placeholder="Enter your phone number" required>
+      </div>
+
+      <div class="form-group">
+      <label for="email">Your Email</label>
+      <input type="email" name="email" id="email" class="contact-inputs" placeholder="Enter your email" required>
+      </div>
+
+      <div class="form-group full-width">
+      <label for="message">Your Message</label>
+      <textarea name="message" id="message" rows="4" class="contact-inputs" placeholder="Write your message..." required></textarea>
+      </div>
+
+      <div class="form-group full-width">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
   </div>
+
+  <hr style="height: 3px;" color="black">
+<div class="Accounts-navebar-bottom">
+
+  <a href="https://www.instagram.com/aurevia.global/" target="_blank">
+  <img src="/stylesheets/images/image-removebg-preview (7).png" alt="instagram">
+  </a>
+
+  <a href="https://www.tiktok.com/@aurevia.global" target="_blank">
+  <img src="/stylesheets/images/Tiktokicon.png" alt="tiktok">
+  </a>
+
+  <a href="https://wa.me/message/CKOUYDLLNEJBF1" target="_blank">
+  <img src="/stylesheets/images/whatsapp-256-black.png" alt="WhatsApp">
+
+  </a>
+</div>
 
 </body>
 </html>

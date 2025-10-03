@@ -1,38 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Collection</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Car Collection</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
-<%- include('../partials/_navbar.ejs') %>
-<h1> Car Collection</h1>
+  <%- include('../partials/_navbar.ejs') %>
 
-<div>
-  <a href="/listings"><button>All</button></a>
-  <a href="/listings?status=Available"><button>Available</button></a>
-  <a href="/listings?status=Sold"><button>Sold</button></a>
-</div>
+  <main class="container">
+    <h1 class="page-title">  Car Collection</h1>
 
-<% if(user && user.role === 'admin') { %>
-<a href="/listings/new"> Add a New Car</a>
-<% } %>
+    <div class="filter-buttons">
+      <a href="/listings"><button>All</button></a>
+      <a href="/listings?status=Available"><button>Available</button></a>
+      <a href="/listings?status=Sold"><button>Sold</button></a>
+    </div>
 
-<% listings.forEach((listing) => { %>
-  <div>Make: <%= listing.make %> - <%= listing.modelyear %> </div>
-  <% if (listing.images && listing.images.length > 0) { %>
-  <div>
-  <h3>Car Images:</h3>
-    <% listing.images.forEach((imageName) => { %>
-   <img src="/uploads/<%= imageName %>" alt="<%= listing.make %> Image" class="listing-image">
-  <% }) %>
-</div>
-<% } %>
+    <% if (user && user.role === 'admin') { %>
+      <a href="/listings/new" class="add-car-btn">Add a New Car</a>
+    <% } %>
 
-  <a href="/listings/<%= listing._id %>"> View more details</a>
-<% }) %>
+    <section class="listings-grid">
+      <% listings.forEach((listing) => { %>
+        <article class="listing-card">
+          
+          <div class="listing-image-wrapper">
+            <% if (listing.images && listing.images.length > 0) { %>
+              <a href="/listings/<%= listing._id %>" class="listing-image-link">
+                <img 
+                  src="/uploads/<%= listing.images[0] %>" 
+                  alt="<%= listing.make %> <%= listing.modelyear %>" 
+                  class="listing-image"
+                />
+              </a>
+            <% } else { %>
+              <div class="placeholder-image">
+                <span>No Image Available</span>
+              </div>
+            <% } %>
+          </div>
 
+          <div class="listing-details">
+            <h3><%= listing.modelyear %> <%= listing.make %></h3>
+            
+            <div class="card-action-buttons">
+              <a href="/listings/<%= listing._id %>" class="btn btn-primary">View Details</a>
+            </div>
+          </div>
 
+        </article>
+      <% }) %>
+    </section>
+    <hr style="height: 3px;" color="black">
+    <div class="Accounts-navebar-bottom">
+      <a href="https://www.instagram.com/aurevia.global/" target="_blank">
+        <img src="stylesheets/images/image-removebg-preview (7).png" alt="instagram">
+      </a>
+      <a href="https://www.tiktok.com/@aurevia.global" target="_blank">
+         <img src="stylesheets/images/Tiktokicon.png" alt="tiktok">
+      </a>
+      <a href="https://wa.me/message/CKOUYDLLNEJBF1" target="_blank">
+         <img src="stylesheets/images/whatsapp-256-black.png" alt="WhatsApp">
+      </a>
+    </div>
+  </main>
 </body>
 </html>

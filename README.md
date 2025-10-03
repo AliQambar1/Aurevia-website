@@ -36,6 +36,7 @@ As Admin:
 
 ![Routes image](Routes.png)
 ![Relationship Diagram](Wireframes%20.png)
+![Logo](public\stylesheets\images\logo.png)
 
 
 Linke of Wireframes: https://excalidraw.com/#json=_6x7f_DxfZTCCke_bGqix,QTYS93xMM8X7pR-WyXyZaw
