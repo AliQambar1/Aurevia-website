@@ -207,14 +207,14 @@ html, body {
 /* Page Title */
 .page-title {
   text-align: center;
-  margin: 5rem 0 2rem; /* Updated */
-  font-size: clamp(2rem, 3vw, 2.8rem); /* Updated */
+  margin: 5rem 0 2rem; 
+  font-size: clamp(2rem, 3vw, 2.8rem);
   font-weight: 700;
   color: #000;
 }
 
 
-/* Filter Buttons (Enhanced) */
+/* Filter Buttons */
 .filter-buttons {
   display: flex;
   justify-content: center;
