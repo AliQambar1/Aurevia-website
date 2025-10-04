@@ -27,10 +27,9 @@
 ### 4- As an admin, I want to update the status of a car (available/sold), so users can see if it’s still for sale.
 
 ![Routes image](Routes.png)
-![Relationship Diagram](Wireframes%20.png)
 ![Logo](public\stylesheets\images\logo.png)
 
 
 ## Linke of Wireframes: https://excalidraw.com/#json=_6x7f_DxfZTCCke_bGqix,QTYS93xMM8X7pR-WyXyZaw
 
-## Linke for ERD:  https://lucid.app/lucidchart/e70eb819-35d4-421e-97c1-e4aa77354bea/edit?view_items=V0DW~24pbXBQ&invitationId=inv_3e09bcd1-fc22-444a-b2e4-b2b731e3e40d
+## Linke for Relationship Diagram:  https://lucid.app/lucidchart/e70eb819-35d4-421e-97c1-e4aa77354bea/edit?view_items=V0DW~24pbXBQ&invitationId=inv_3e09bcd1-fc22-444a-b2e4-b2b731e3e40d
