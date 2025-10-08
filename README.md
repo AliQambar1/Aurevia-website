@@ -25,11 +25,47 @@
 ### 3- As an admin, I want to edit details of existing car listings, so the information remains accurate and up to date.
 
 ### 4- As an admin, I want to update the status of a car (available/sold), so users can see if it’s still for sale.
-
+ 
 ![Routes image](Routes.png)
-![Logo](public\stylesheets\images\logo.png)
-
+![Screenshot](<Screenshot Aurevia.png>)
 
 ## Linke of Wireframes: https://excalidraw.com/#json=_6x7f_DxfZTCCke_bGqix,QTYS93xMM8X7pR-WyXyZaw
 
 ## Linke for Relationship Diagram:  https://lucid.app/lucidchart/e70eb819-35d4-421e-97c1-e4aa77354bea/edit?view_items=V0DW~24pbXBQ&invitationId=inv_3e09bcd1-fc22-444a-b2e4-b2b731e3e40d
+
+
+## Attributions
+### - The background video featured on the Home page was sourced from the [Luck Media YouTube Channel](https://www.youtube.com/watch?v=iRPQiQdCZIo&list=PLbcxLgwCUo7HEYBM8hkLVGGbWsMAzP0fR&index=1).  
+### All rights for the video belong to Luck Media.
+
+
+## Technologies Used
+
+### 1- JavaScript: Used for client side and server side functionality.  
+
+### 2- HTML: Provides the structure and layout of the web pages.
+
+### 3- CSS: styling of the application.  
+
+### 4- Express.js: Framework used to build the backend server and manage routes. 
+
+### 5- Multer: Middleware for handling file uploads such as images.
+
+### 6- Node.js: Runtime environment for executing JavaScript on the server.  
+
+### 7- MongoDB: NoSQL database used to store and manage application data.  
+
+### 8- Mongoose: used to define schemas and interact with the database(MongoDB).
+
+
+## Next Steps:
+
+### 1 - I will improve the way of saving and managing uploaded images.
+
+### 2 - I will enhance the process of creating and managing Admin accounts.
+
+### 3 - I will make the collections visible to users even if they haven’t signed up or signed in.
+
+### 4 - I will add more categories, not just cars, such as yachts and other luxury items.
+
+### 5 - I will create a new page to showcase other services we provide.
